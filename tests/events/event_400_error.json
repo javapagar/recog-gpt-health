@@ -1,0 +1,42 @@
+{
+    "body": "fiebre",
+    "cookies": [],
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "Content-Length": "45",
+        "Content-Type": "application/json",
+        "Host": "127.0.0.1:3000",
+        "Postman-Token": "07665f7a-ee3a-44f1-abd8-59b75f080d8d",
+        "User-Agent": "PostmanRuntime/7.33.0",
+        "X-Forwarded-Port": "3000",
+        "X-Forwarded-Proto": "http"
+    },
+    "isBase64Encoded": false,
+    "pathParameters": {},
+    "rawPath": "/diagnosis",
+    "rawQueryString": "",
+    "requestContext": {
+        "accountId": "123456789012",
+        "apiId": "1234567890",
+        "domainName": "localhost",
+        "domainPrefix": "localhost",
+        "http": {
+            "method": "GET",
+            "path": "/diagnosis",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "127.0.0.1",
+            "userAgent": "Custom User Agent String"
+        },
+        "requestId": "d8ad8cc8-cf89-49b0-9988-45431073b724",
+        "routeKey": "GET /diagnosis",
+        "stage": "$default",
+        "time": "25/Oct/2023:11:07:32 +0000",
+        "timeEpoch": 1698232052
+    },
+    "routeKey": "GET /diagnosis",
+    "stageVariables": null,
+    "version": "2.0"
+}
