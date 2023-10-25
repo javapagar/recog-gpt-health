@@ -1,5 +1,5 @@
 from domain.symptoms_input import SymptomsInputModel, SymptomsInput
-from aws_lambda_powertools.utilities.parser import parse, ValidationError
+from aws_lambda_powertools.utilities.parser import ValidationError
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from infrastructure.mock_doctor import MockDoctor
 from application.diagnosis_controller import Diagnosiscontroller
@@ -16,7 +16,8 @@ def get_json_response(status_code: int, json_resp:json)-> dict:
 
 def lambda_handler(event:SymptomsInputModel, context:LambdaContext):
     try:
-        symptoms_body: SymptomsInputModel = parse(event = event,model=SymptomsInputModel)
+        # symptoms_body: SymptomsInputModel = parse(event = event,model=SymptomsInputModel)
+        symptoms_body: SymptomsInputModel = SymptomsInputModel.model_validate(event)
         
         symptoms_input: SymptomsInput = symptoms_body.body
         doctor = MockDoctor()
