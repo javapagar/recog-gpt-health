@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  gpt-health
+
+  Technical test for Recog
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  GptHealthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        GptHealthAPIEvent:
+          Type: HttpApi 
+          Properties:
+            Path: /diagnosis
+            Method: get
+
+  # ApplicationResourceGroup:
+  #   Type: AWS::ResourceGroups::Group
+  #   Properties:
+  #     Name:
+  #       Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+  #     ResourceQuery:
+  #       Type: CLOUDFORMATION_STACK_1_0
+  # ApplicationInsightsMonitoring:
+  #   Type: AWS::ApplicationInsights::Application
+  #   Properties:
+  #     ResourceGroupName:
+  #       Ref: ApplicationResourceGroup
+  #     AutoConfigurationEnabled: 'true'
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  GptHealthAPI:
+    Description: API Gateway endpoint URL for Prod stage
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/diagnosis/"
+  GptHealthFunction:
+    Description: GptHealth Lambda Function ARN
+    Value: !GetAtt GptHealthFunction.Arn
+  GptHealthFunctionIamRole:
+    Description: Implicit IAM Role created
+    Value: !GetAtt GptHealthFunctionnRole.Arn
