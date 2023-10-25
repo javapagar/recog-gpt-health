@@ -10,6 +10,8 @@ The project needs:
 ## Project structure
 This project was create using AWS SAM
 
+```sam init```
+
 ### Configuration files
 template.yaml file include the necessary configuration for build the AWS Project using the command:
 
@@ -29,9 +31,11 @@ It's prety important requirements.txt with some libraries to project works.
 ## Test
 1. You can use ```sam local invoke -e ./events/event_api_gateway_v2.json```
 2. You can use an API client, like postman, you need to prepare the body:
-```{
-"symptoms": ["fever", "headache","cough"]
-}```
+```{"symptoms": ["fever", "headache","cough"]}```
 Before launch the GET request, We must start API at local with:
 ```sam local start-api```
 you can use the URL: http://127.0.0.1:3000/diagnosis
+
+## Deploy to AWS
+1. build ```sam build```
+2. Deploy ```sam deploy --guided --profile <profile_name>```
