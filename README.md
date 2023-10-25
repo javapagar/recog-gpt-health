@@ -5,6 +5,7 @@ The project needs:
 1. Docker engine install
 2. AWS CLI install
 3. AWS SAM install
+4. API client for test on local like postman (Optional)
 
 ## Project structure
 This project was create using AWS SAM
@@ -14,9 +15,9 @@ template.yaml file include the necessary configuration for build the AWS Project
 
 ```sam build```
 
-
+This way, we create the folder .aws-sam with all 
 ### events folder
-It contains event_api_gateway_v2.json file with the event json schema. we can use this file to testing Lambda Function from a local machine:
+It contains event_api_gateway_v2.json file with the event json schema. Before build, we can use this file to testing Lambda Function from a local machine or on AWS platform. For local test we'll use:
 
 ```sam invoke -e ./events/event_api_gateway_v2.json```
 
