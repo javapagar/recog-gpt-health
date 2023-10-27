@@ -4,6 +4,7 @@ from aws_lambda_powertools.utilities.typing import LambdaContext
 from infrastructure.mock_doctor import MockDoctor
 from application.diagnosis_controller import Diagnosiscontroller
 import json
+from http import HTTPStatus
 
 def get_json_response(status_code: int, json_resp:json)-> dict:
     return {
@@ -26,12 +27,12 @@ def lambda_handler(event:SymptomsInputModel, context:LambdaContext):
         
         json_diagnosis = json.dumps({"diagnosis": diagnosis})
         
-        return get_json_response(200,json_diagnosis)
+        return get_json_response(HTTPStatus.OK,json_diagnosis)
         
     except ValidationError as e:
         json_error = json.dumps({"message": "Symptoms bad request error"})
-        return get_json_response(400,json_error)
+        return get_json_response(HTTPStatus.BAD_REQUEST,json_error)
     
     except Exception as e:
         json_error = json.dumps({"message": "Server Error"})
-        return get_json_response(500,json_error)
+        return get_json_response(HTTPStatus.INTERNAL_SERVER_ERROR,json_error)
